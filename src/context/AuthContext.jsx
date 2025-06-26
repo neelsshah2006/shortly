@@ -17,7 +17,8 @@ export const AuthProvider = ({ children }) => {
                     setUser(null)
                 }
             } catch (err) {
-                console.log("Auth check failed:", err)
+                toast.error("Auth check failed:", err?.message)
+                console.log(err);
                 setUser(null);
             } finally {
                 setLoading(false)
@@ -36,9 +37,9 @@ export const AuthProvider = ({ children }) => {
                 toast.error("Login failed - no user data received")
             }
         } catch (error) {
-            toast.error("Login error:", error)
+            toast.error("Login error:", error?.message)
+            console.log(error);
             setUser(null)
-            throw error
         }
     }
     const register = async (info) => {

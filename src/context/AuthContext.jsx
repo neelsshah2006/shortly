@@ -17,8 +17,6 @@ export const AuthProvider = ({ children }) => {
                     setUser(null)
                 }
             } catch (err) {
-                toast.error("Auth check failed:", err?.message)
-                console.log(err);
                 setUser(null);
             } finally {
                 setLoading(false)

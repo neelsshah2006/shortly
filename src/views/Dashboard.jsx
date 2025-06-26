@@ -9,8 +9,6 @@ import { copyToClipboard } from "../utils/copyToClipboard.util";
 import { getQRUrl } from "../utils/getQRUrl.util";
 import QRCode from "../components/static/QRCode";
 import { isValidCustomCode } from "../utils/validateCustomCode.util";
-import { checkAuth } from "../services/auth.service";
-import { useRouter } from "next/router";
 import { formatNumber } from "../utils/formatNumber.util";
 import { getRelativeTime } from "../utils/getRelativeTime.util";
 import Link from "next/link";
@@ -29,21 +27,13 @@ const Dashboard = () => {
     const [sortBy, setSortBy] = useState('Newest First');
     const [checkAll, setCheckAll] = useState(false)
     const [selectedUrls, setSelectedUrls] = useState([]);
-    const router = useRouter()
 
     const [formData, setFormData] = useState({
         longUrl: "",
         customCode: ""
     })
 
-    const auth = async () => {
-        try {
-            const result = await checkAuth()
-            return result
-        } catch (error) {
-            router.push("/auth")
-        }
-    }
+
 
     const totalClicksCount = () => {
         const clicks = urls.reduce((sum, url) => sum + url.visitCount, 0);
@@ -120,8 +110,10 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        auth().then(() => fetchUrls())
-    }, []);
+        if (user) {
+            fetchUrls()
+        }
+    }, [user]);
 
     useEffect(() => {
         if (urls.length > 0) totalClicksCount();

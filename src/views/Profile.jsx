@@ -3,8 +3,6 @@ import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import LoadingSpinner from "../components/loaders/LoadingSpinner";
-import { checkAuth } from "../services/auth.service";
-import { useRouter } from "next/router";
 import { changePassword, getUserUrls, updateProfile } from "../services/user.service";
 import { getAccountAge } from "../utils/getAccountAge.util"
 import { Calendar, Eye, LinkIcon } from "lucide-react";
@@ -40,15 +38,7 @@ const Profile = () => {
         { id: 'stats', name: 'Statistics', icon: '📊' }
     ];
 
-    const router = useRouter()
 
-    const auth = async () => {
-        try {
-            await checkAuth()
-        } catch (error) {
-            router.push("/auth")
-        }
-    }
 
     const totalClicksCount = (links) => {
         const clicks = links.reduce((sum, url) => sum + url.visitCount, 0);
@@ -120,17 +110,15 @@ const Profile = () => {
     }
 
     useEffect(() => {
-        auth().then(() => {
+        if (user) {
             fetchUrls()
-            if (user) {
-                const { days, years } = getAccountAge(user?.createdAt)
-                if (years > 0) {
-                    setAccountAge(`${years} years ${days % 365} days`)
-                } else {
-                    setAccountAge(`${days} days`)
-                }
+            const { days, years } = getAccountAge(user?.createdAt)
+            if (years > 0) {
+                setAccountAge(`${years} years ${days % 365} days`)
+            } else {
+                setAccountAge(`${days} days`)
             }
-        })
+        }
     }, [user]);
 
     return (

@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import { checkAuth, loginUser, logoutUser, registerUser } from "../services/auth.service"
+import { toast } from "react-toastify"
 
 const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
@@ -10,8 +11,13 @@ export const AuthProvider = ({ children }) => {
         const fetchProfile = async () => {
             try {
                 const userData = await checkAuth()
-                setUser(userData)
+                if (userData) {
+                    setUser(userData)
+                } else {
+                    setUser(null)
+                }
             } catch (err) {
+                console.log("Auth check failed:", err)
                 setUser(null);
             } finally {
                 setLoading(false)
@@ -21,14 +27,34 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
     const login = async (credentials) => {
-        const userData = await loginUser(credentials)
-        setUser(userData)
-        return { user: userData }
+        try {
+            const userData = await loginUser(credentials)
+            if (userData) {
+                setUser(userData)
+                return { user: userData }
+            } else {
+                toast.error("Login failed - no user data received")
+            }
+        } catch (error) {
+            toast.error("Login error:", error)
+            setUser(null)
+            throw error
+        }
     }
     const register = async (info) => {
-        const userData = await registerUser(info);
-        setUser(userData);
-        return { user: userData };
+        try {
+            const userData = await registerUser(info);
+            if (userData) {
+                setUser(userData);
+                return { user: userData };
+            } else {
+                toast.error("Registration failed - no user data received")
+            }
+        } catch (error) {
+            toast.error("Registration error:", error)
+            setUser(null)
+            throw error
+        }
     };
 
     const logout = async () => {

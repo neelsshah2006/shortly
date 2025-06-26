@@ -1,5 +1,10 @@
 import Profile from "../views/Profile";
+import ProtectedRoute from "../components/routing/ProtectedRoute";
 
 export default function ProfilePage() {
-  return <Profile />;
+  return (
+    <ProtectedRoute>
+      <Profile />
+    </ProtectedRoute>
+  );
 }

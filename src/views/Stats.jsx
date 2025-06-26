@@ -13,10 +13,11 @@ import LoadingSpinner from "../components/loaders/LoadingSpinner";
 import { getAnalytics } from "../utils/getAnalytics.util";
 import { getMilliseconds } from "../utils/getMilliseconds.util";
 import QRCode from "../components/static/QRCode";
-import { checkAuth } from "../services/auth.service";
+import { useAuth } from "../context/AuthContext";
 import { AlertTriangle, BarChart3Icon, Building2, Copy, Earth, EarthIcon, Eye, Globe, Landmark, Laptop2, LinkIcon, MapPin, QrCodeIcon, Smartphone } from "lucide-react";
 
 const Stats = ({ shortCode }) => {
+    const { user } = useAuth();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [clicks, setClicks] = useState([]);
@@ -48,7 +49,7 @@ const Stats = ({ shortCode }) => {
             })
             .catch((error) => {
                 toast.error(error?.message || "Failed to fetch URL stats");
-                // router.push("/dashboard");
+                router.push("/dashboard");
             })
             .finally(() => {
                 setLoading(false);
@@ -66,14 +67,10 @@ const Stats = ({ shortCode }) => {
     };
 
     useEffect(() => {
-        checkAuth()
-            .then((user) => {
-                fetchStats(user._id);
-            })
-            .catch((err) => {
-                router.push("/auth");
-            });
-    }, []);
+        if (user) {
+            fetchStats(user._id);
+        }
+    }, [user]);
 
     useEffect(() => {
         setFilteredClicks(

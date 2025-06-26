@@ -2,27 +2,18 @@ import { useEffect, useState } from 'react'
 import Login from '../components/static/Login'
 import Register from '../components/static/Register'
 import { useAuth } from "../context/AuthContext"
-import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
-import { useSearchParams } from 'next/navigation'
-import { checkAuth } from '../services/auth.service'
 
 const Auth = () => {
-    const { setUser } = useAuth()
-    const { login, register } = useAuth()
+    const { user, login, register } = useAuth()
     const [auth, setAuth] = useState("login")
     const router = useRouter()
 
     useEffect(() => {
-        checkAuth().then((res) => {
-            if (res) {
-                setUser(res)
-                router.push("/dashboard")
-            }
-        }).catch((error) => {
-            setUser(null)
-        })
-    }, [router, setUser])
+        if (user) {
+            router.push("/dashboard")
+        }
+    }, [user, router])
 
     useEffect(() => {
         let login = document.querySelector(".login")

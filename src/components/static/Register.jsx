@@ -4,14 +4,14 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
 const Register = ({ register }) => {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [confirmPassword, setConfirmPassword] = useState("")
-    const [username, setUsername] = useState("")
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [loading, setLoading] = useState(false)
-    const router = useRouter()
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [username, setUsername] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -24,19 +24,23 @@ const Register = ({ register }) => {
             return;
         }
         setLoading(true);
-        register({ email, password, username, firstName, lastName }).then(() => {
-            router.push("/dashboard")
+        register({ email, password, username, firstName, lastName }).then((userData) => {
+            if (userData && userData.user) {
+                toast.success("Registration successful!");
+                router.push("/dashboard");
+            }
         }).catch((error) => {
-            toast.error(error?.message || "Failed to Register. Please retry")
+            toast.error(error?.message || "Failed to Register. Please retry");
         }).finally(() => {
-            setLoading(false)
-        })
-    }
+            setLoading(false);
+        });
+    };
+
     return (
         <div className="flex justify-center items-center w-full px-4">
             <form
                 onSubmit={(e) => {
-                    submitHandler(e)
+                    submitHandler(e);
                 }}
                 className="flex flex-col gap-6 w-full p-8 bg-gray-800 rounded-2xl shadow-2xl">
                 <h2 className="text-2xl font-bold text-center text-white">Register Account</h2>
@@ -103,6 +107,6 @@ const Register = ({ register }) => {
             </form>
         </div>
     );
-}
+};
 
-export default Register
+export default Register;

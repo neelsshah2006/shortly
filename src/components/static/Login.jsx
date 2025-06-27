@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { toast } from "react-toastify";
 import PasswordInput from "./PasswordInput";
 
-const Login = ({ login, longUrl }) => {
+const Login = ({ login }) => {
     const [emailOrUsername, setEmailOrUsername] = useState("")
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false)

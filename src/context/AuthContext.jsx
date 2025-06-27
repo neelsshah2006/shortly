@@ -26,33 +26,22 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
     const login = async (credentials) => {
-        try {
-            const userData = await loginUser(credentials)
-            if (userData) {
-                setUser(userData)
-                return { user: userData }
-            } else {
-                toast.error("Login failed - no user data received")
-            }
-        } catch (error) {
-            toast.error("Login error:", error?.message)
-            console.log(error);
-            setUser(null)
+        const userData = await loginUser(credentials)
+        if (userData) {
+            setUser(userData)
+            return { user: userData }
+        } else {
+            toast.error("Login failed - no user data received")
         }
     }
+
     const register = async (info) => {
-        try {
-            const userData = await registerUser(info);
-            if (userData) {
-                setUser(userData);
-                return { user: userData };
-            } else {
-                toast.error("Registration failed - no user data received")
-            }
-        } catch (error) {
-            toast.error("Registration error:", error)
-            setUser(null)
-            throw error
+        const userData = await registerUser(info);
+        if (userData) {
+            setUser(userData);
+            return { user: userData };
+        } else {
+            toast.error("Registration failed - no user data received")
         }
     };
 

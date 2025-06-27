@@ -80,18 +80,16 @@ const Stats = ({ shortCode }) => {
     }, [clicks, filterTime]);
 
     useEffect(() => {
-        if (filteredClicks.length > 0) {
-            const analytics = getAnalytics(filteredClicks);
-            settotalClicks(analytics.totalClicks);
-            setClicksByTime(analytics.clicksByTime);
-            setClicksByContinent(analytics.clicksByContinent);
-            setClicksByCountry(analytics.clicksByCountry);
-            setClicksByState(analytics.clicksByState);
-            setClicksByCity(analytics.clicksByCity);
-            setClicksByOS(analytics.clicksByOs);
-            setClicksByDevice(analytics.clicksByDevice);
-            setClicksByBrowser(analytics.clicksByBrowser);
-        }
+        const analytics = getAnalytics(filteredClicks);
+        settotalClicks(analytics.totalClicks);
+        setClicksByTime(analytics.clicksByTime);
+        setClicksByContinent(analytics.clicksByContinent);
+        setClicksByCountry(analytics.clicksByCountry);
+        setClicksByState(analytics.clicksByState);
+        setClicksByCity(analytics.clicksByCity);
+        setClicksByOS(analytics.clicksByOs);
+        setClicksByDevice(analytics.clicksByDevice);
+        setClicksByBrowser(analytics.clicksByBrowser);
     }, [filteredClicks]);
 
     if (loading) {

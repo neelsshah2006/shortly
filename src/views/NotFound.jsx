@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 
 const NotFound = () => {
+    // Set the document title for the Not Found page
+    useEffect(() => {
+        document.title = "Page Not Found - Shortly";
+    })
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-700 to-gray-900 text-white">
             <h1 className="text-6xl font-bold mb-4">404</h1>

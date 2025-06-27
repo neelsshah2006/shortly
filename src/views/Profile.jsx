@@ -112,6 +112,7 @@ const Profile = () => {
     useEffect(() => {
         if (user) {
             fetchUrls()
+            document.title = `Profile - ${user.fullName.firstName}`;
             const { days, years } = getAccountAge(user?.createdAt)
             if (years > 0) {
                 setAccountAge(`${years} years ${days % 365} days`)

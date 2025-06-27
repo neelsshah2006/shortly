@@ -69,6 +69,7 @@ const Stats = ({ shortCode }) => {
     useEffect(() => {
         if (user) {
             fetchStats(user._id);
+            document.title = `Stats for ${shortCode} - Shortly`;
         }
     }, [user]);
 

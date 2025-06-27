@@ -112,6 +112,7 @@ const Dashboard = () => {
     useEffect(() => {
         if (user) {
             fetchUrls()
+            document.title = `Dashboard - ${user.fullName.firstName}`;
         }
     }, [user]);
 

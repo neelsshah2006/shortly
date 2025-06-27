@@ -28,7 +28,7 @@ const Footer = () => {
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
                             <p className="text-gray-400 text-sm">
-                                © {currentYear} Shortly. All rights reserved.
+                                © {currentYear} Shortly.
                             </p>
                         </div>
                         <div className="mt-4 md:mt-0">

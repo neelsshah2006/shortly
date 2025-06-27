@@ -1,6 +1,5 @@
 # Shortly 🔗
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Next.js](https://img.shields.io/badge/Next.js-15.3.4-black)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.0.0-blue)](https://reactjs.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.0-38B2AC)](https://tailwindcss.com/)
@@ -82,7 +81,9 @@ Shortly is a comprehensive URL shortening platform that allows users to create s
 
 - Node.js (version 18 or higher)
 - npm, yarn, pnpm, or bun package manager
-- A backend API server (not included in this repository) (Server used in this Project -- [`https://github.com/neelsshah2006/url_shortner_api`](!https://github.com/neelsshah2006/url_shortner_api]))
+- A backend API server (not included in this repository)
+
+> Server used in this Project -- [`https://github.com/neelsshah2006/url_shortner_api`](https://github.com/neelsshah2006/url_shortner_api])
 
 ### Steps
 
@@ -188,7 +189,7 @@ This frontend application communicates with a backend API. The main endpoints us
 - `GET /user/profile` - Get user profile information
 - `PATCH /user/profile` - Update user profile
 
-> For More Details about the API, Check the given API URL - [`https://github.com/neelsshah2006/url_shortner_api`](!https://github.com/neelsshah2006/url_shortner_api])
+> For More Details about the API, Check the given API URL - [`https://github.com/neelsshah2006/url_shortner_api`](https://github.com/neelsshah2006/url_shortner_api])
 
 ## 🤝 Contributing
 
@@ -254,34 +255,6 @@ We welcome contributions to Shortly! Here's how you can help:
 - 🔧 Performance optimizations
 - 🧪 Test coverage improvements
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-```
-MIT License
-
-Copyright (c) 2024 Shortly
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
 ## 👨‍💻 Author
 
 **Neel Shah**
@@ -301,7 +274,6 @@ SOFTWARE.
 ## 📊 Project Stats
 
 - **Node.js**: >= 18.0.0
-- **License**: MIT
 - **Status**: Active Development
 
 ---
